@@ -14,16 +14,14 @@ const get = () => ({ x: 123 })
 const newObj = () => new Object({ x: 123 })
 const assign = () => Object.assign({}, { x: 123 })
 const invAssign = () => Object.assign({ x: 123 }, {})
-// const spread = () => ({ ...{}, ...{ x: 123 } })
-// const invSpread = () => ({ ...{ x: 123 }, ...{} })
+const spread = () => ({ ...{}, ...{ x: 123 } })
 const proxy = () => new Proxy({ x: 123 }, p)
 
 const cachedGet = get()
 const cachedNewObj = newObj()
 const cachedAssign = assign()
 const cachedInvAssign = invAssign()
-// const cachedSpread = spread()
-// const cachedInvSpread = invSpread()
+const cachedSpread = spread()
 const cachedProxy = proxy()
 
 console.log('============================================================')
@@ -56,18 +54,12 @@ suite
     .add('Object.assign inv cache\t', () => {
         cachedInvAssign.x++
     })
-    // .add('spread\t\t\t', () => {
-    //     spread().x++
-    // })
-    // .add('spread cached\t\t', () => {
-    //     invSpread.x++
-    // })
-    // .add('spread inverted\t\t', () => {
-    //     cachedSpread().x++
-    // })
-    // .add('spread inv cache\t\t', () => {
-    //     cachedInvSpread.x++
-    // })
+    .add('spread\t\t\t', () => {
+        spread().x++
+    })
+    .add('spread cached\t\t', () => {
+        invSpread.x++
+    })
     .add('new Proxy.get\t\t', () => {
         proxy().x++
     })
